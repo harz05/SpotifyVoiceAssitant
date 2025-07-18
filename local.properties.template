@@ -1,0 +1,8 @@
+# Copy this file to local.properties and add your actual API keys
+
+# Spotify API Keys - Get from https://developer.spotify.com/dashboard
+SPOTIFY_CLIENT_ID=your_spotify_client_id_here
+SPOTIFY_CLIENT_SECRET=your_spotify_client_secret_here
+
+# Pico Voice API Key - Get from https://console.picovoice.ai/
+PICO_VOICE_ACCESS_KEY=your_pico_voice_access_key_here

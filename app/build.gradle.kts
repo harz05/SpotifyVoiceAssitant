@@ -1,4 +1,6 @@
 // Top of the file
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -18,9 +20,16 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        // ADDED: Your Spotify API credentials will be accessible in your code
-        buildConfigField("String", "SPOTIFY_CLIENT_ID", "\"6bd51120a1f349d7b0f49d41a3ea4e50\"")
-        buildConfigField("String", "SPOTIFY_CLIENT_SECRET", "\"882285f7f2294e2789c6d5f3ab5f55c7\"")
+        // SECURE: Reading API credentials from local.properties
+        val localProperties = Properties()
+        val localPropertiesFile = rootProject.file("local.properties")
+        if (localPropertiesFile.exists()) {
+            localProperties.load(localPropertiesFile.inputStream())
+        }
+
+        buildConfigField("String", "SPOTIFY_CLIENT_ID", "\"${localProperties.getProperty("SPOTIFY_CLIENT_ID", "")}\"")
+        buildConfigField("String", "SPOTIFY_CLIENT_SECRET", "\"${localProperties.getProperty("SPOTIFY_CLIENT_SECRET", "")}\"")
+        buildConfigField("String", "PICO_VOICE_ACCESS_KEY", "\"${localProperties.getProperty("PICO_VOICE_ACCESS_KEY", "")}\"")
     }
 
     buildTypes {

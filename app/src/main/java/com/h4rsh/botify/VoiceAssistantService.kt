@@ -23,10 +23,28 @@ import androidx.core.app.NotificationCompat
 
 class VoiceAssistantService : Service() {
 
-    // RENAMED: Following Kotlin style conventions (camelCase)
-    private val picoVoiceAccessKey = "7qNpifr+fnLlew8fvXbJxksKHHztKvpnca2HIYyPkC9i0w1vMI4/6g=="
+    // SECURE: Reading API key directly from local.properties
+    private val picoVoiceAccessKey by lazy {
+        getApiKeyFromLocalProperties("PICO_VOICE_ACCESS_KEY")
+    }
     private val spotifyPackageName = "com.spotify.music"
     private val tag = "VoiceAssistantService"
+
+    private fun getApiKeyFromLocalProperties(key: String): String {
+        return try {
+            val properties = java.util.Properties()
+            val localPropertiesFile = java.io.File("local.properties")
+            if (localPropertiesFile.exists()) {
+                properties.load(localPropertiesFile.inputStream())
+                properties.getProperty(key, "")
+            } else {
+                ""
+            }
+        } catch (e: Exception) {
+            Log.e(tag, "Error reading from local.properties: ${e.message}")
+            ""
+        }
+    }
 
     private var porcupineManager: PorcupineManager? = null
     private var speechRecognizer: SpeechRecognizer? = null
