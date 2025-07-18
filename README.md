@@ -4,7 +4,7 @@ Lightweight, foreground service(compatible on Android 8.0+) that adds "Hello Spo
 
 This is designed to be invisible(almost) and efficient, providing hands-free music control without any dedicated UI.
 
-The project is particularly a person one since it was an issue that I faced especially when driving car, bike or in any situation where my hands are not free. Although cars already come with Android Auto support that does this in-built through the "hey google" cmd but many of them are only active when the phone is connected through USB plus many low end cars don't come with Android Auto(Bikes still don't come with Android Auto)
+The project is particularly a personal one since it was an issue that I faced especially when driving car, bike or in any situation where my hands are not free. Although cars already come with Android Auto support that does this in-built through the "hey google" cmd but many of them are only active when the phone is connected through USB plus many low end cars don't come with Android Auto(Bikes still don't come with Android Auto)
 
 ## Tech Stack
 
